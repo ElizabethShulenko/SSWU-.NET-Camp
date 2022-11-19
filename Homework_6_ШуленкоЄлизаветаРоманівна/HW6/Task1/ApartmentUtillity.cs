@@ -46,7 +46,7 @@ namespace Task1
             return apartment;
         }
 
-        public static IEnumerable<Apartment> FindDebtors(IEnumerable<Apartment> apartments)
+        public static IOrderedEnumerable<Apartment> FindDebtors(IEnumerable<Apartment> apartments)
         {
             var result = apartments
                 .OrderByDescending(m => m.ElectricityMeter.GetTotalPrice())
@@ -56,7 +56,7 @@ namespace Task1
             return result;
         }
 
-        public static IEnumerable<Apartment> FindUnusedApartments(IEnumerable<Apartment> apartments)
+        public static IOrderedEnumerable<Apartment> FindUnusedApartments(IEnumerable<Apartment> apartments)
         {
             var result = apartments
                 .Where(m => m.ElectricityMeter.GetTotalPrice() / ElectricityMeter.WATT_PRICE < 10)

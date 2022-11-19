@@ -66,17 +66,17 @@ namespace Task1
         {
             var report = ApartmentUtillity.GetQuarterReport(apartments, quarter);
 
-            FillReportFile($"{fileName ?? $"report {DateTime.Now.ToString("dd.MM.yy")}"}.txt", report);
+            WriteToReportFile($"{fileName ?? $"report {DateTime.Now.ToString("dd.MM.yy")}"}.txt", report);
         }
 
         public static void FillReportFile(Apartment apartment, int quarter, string? fileName = null)
         {
             var report = ApartmentUtillity.GetQuarterReport(apartment, quarter);
 
-            FillReportFile($"{fileName ?? $"report {DateTime.Now.ToString("dd.MM.yy")} Apartment #{apartment.Number}"}.txt", report);
+            WriteToReportFile($"{fileName ?? $"report {DateTime.Now.ToString("dd.MM.yy")} Apartment #{apartment.Number}"}.txt", report);
         }
 
-        public static void FillReportFile(string fileName, string data)
+        private static void WriteToReportFile(string fileName, string data)
         {
             if (!Directory.Exists(_outputFolderPath))
             {

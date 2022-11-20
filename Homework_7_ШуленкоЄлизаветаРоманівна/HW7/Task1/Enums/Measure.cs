@@ -1,0 +1,1 @@
+﻿public enum Measure { Kilogram, Liter, Pound }

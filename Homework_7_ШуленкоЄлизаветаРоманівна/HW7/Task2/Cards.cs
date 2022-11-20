@@ -18,13 +18,6 @@
             Visa
         }
 
-        public static bool IsCardValid(string card)
-        {
-            var arr = card.Select(m => Int32.Parse(m.ToString())).ToArray();
-
-            return LoonaAlgorithm.LoonasCheck(arr);
-        }
-
         public static CardTypes? CheckCard(string card)
         {
             if (!IsCardValid(card))
@@ -50,6 +43,18 @@
             }
 
             return null;
+        }
+
+        public static bool IsCardValid(string card)
+        {
+            if (!card.All(char.IsDigit))
+            {
+                return false;
+            }
+
+            var arr = card.Select(m => Int32.Parse(m.ToString())).ToArray();
+
+            return LoonaAlgorithm.LoonasCheck(arr);
         }
 
         private static bool IsAmericanExpress(string card)

@@ -1,44 +1,22 @@
-﻿using System.Text;
-using Task1.Models.Products;
-
-namespace Task1.Models.Orders
+﻿namespace Task1.Models.Orders
 {
     internal class Order
     {
         public string CompanyName { get; set; }
 
-        public IEnumerable<OrderProduct> Products { get; set; }
+        public string ProductName { get; set; }
 
-        public Order()
-        {
-            Products = new List<OrderProduct>();
-        }
+        public double ProductWeight { get; set; }
 
-        public Order(string companyName, IEnumerable<OrderProduct> products)
-        {
-            CompanyName = companyName;
-            Products = products;
-        }
+        public Order() { }
 
-        public Order(string companyName, OrderProduct product)
+        public Order(string companyName, string productName, double productWeight)
         {
             CompanyName = companyName;
-            Products = new List<OrderProduct> { product };
+            ProductName = productName;
+            ProductWeight = productWeight;
         }
 
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-
-            sb.AppendLine($"Company: {CompanyName}");
-            sb.AppendLine("Products in order:");
-
-            foreach (var product in Products)
-            {
-                sb.AppendLine(product.ToString());
-            }
-
-            return sb.ToString();
-        }
+        public override string ToString() => $"Company: {CompanyName}, Product name: {ProductName}, Weight: {ProductWeight}";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Task1.Models.Orders;
+using Task1.Models.Products;
 
 namespace Task1
 {
@@ -7,7 +8,7 @@ namespace Task1
     {
         private static readonly string _inputFolderPath = @"..\..\Input";
         private static readonly string _outputFolderPath = @"..\..\Output";
-        private static readonly string _goodsFolderPath = @"..\..\RelatedGoods";
+        private static readonly string _relatedProductsFolderPath = @"..\..\RelatedGoods";
 
         public static List<Order> GetOrdersFromFile()
         {
@@ -30,7 +31,7 @@ namespace Task1
 
         private static IEnumerable<Order> GetOrders(string filePath)
         {
-            var orders = new List<Order>();
+            var result = new List<Order>();
 
             var fileData = File.ReadLines(filePath);
 
@@ -38,13 +39,9 @@ namespace Task1
             {
                 if (TryParseOrder(line, out Order order))
                 {
-                    orders.Add(order);
+                    result.Add(order);
                 }
             }
-
-            var groupedOrders = orders.GroupBy(m => m.CompanyName);
-
-            var result = groupedOrders.Select(m => new Order(m.Key, m.SelectMany(o => o.Products)));
 
             return result;
         }
@@ -69,16 +66,33 @@ namespace Task1
                 return false;
             }
 
-            order = new Order(companyNameString, new OrderProduct(productNameString, weight));
+            order = new Order(companyNameString, productNameString, weight);
 
             return true;
         }
 
-        public static void FillReportFile(Order order, string? fileName = null)
+        public static void FillReportFile(Order order, IEnumerable<Product> suitableProducts)
         {
-            var report = GetOrderReport(order);
+            var sb = new StringBuilder();
 
-            WriteToReportFile($"{fileName ?? $"Report {order.CompanyName}"}.txt", report);
+            sb.AppendLine("Order failed!\n");
+            sb.AppendLine($"{order}\n");
+
+            if (suitableProducts.Count() > 0)
+            {
+                sb.AppendLine("Suitable products:");
+
+                foreach (var product in suitableProducts)
+                {
+                    sb.AppendLine(product.ToString());
+                }
+            }
+            else
+            {
+                sb.AppendLine("Product not found!");
+            }
+
+            WriteToReportFile($"{$"Report {order.CompanyName}"}.txt", sb.ToString());
         }
 
         private static void WriteToReportFile(string fileName, string data)
@@ -91,26 +105,16 @@ namespace Task1
             File.WriteAllText($"{_outputFolderPath}\\{fileName}", data);
         }
 
-        public static string GetOrderReport(Order order)
-        {
-            var sb = new StringBuilder();
-
-            sb.AppendLine($"Order info: ");
-            sb.AppendLine(order.ToString());
-
-            return sb.ToString();
-        }
-
         public static List<List<string>> GetRelatedGoodsFromFile()
         {
             var result = new List<List<string>>();
 
-            if (!Directory.Exists(_goodsFolderPath))
+            if (!Directory.Exists(_relatedProductsFolderPath))
             {
-                Directory.CreateDirectory(_goodsFolderPath);
+                Directory.CreateDirectory(_relatedProductsFolderPath);
             }
 
-            var filePath = Directory.GetFiles(_goodsFolderPath);
+            var filePath = Directory.GetFiles(_relatedProductsFolderPath);
 
             result = GetRelatedGoods(filePath[0]);            
 

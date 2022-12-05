@@ -53,7 +53,7 @@ namespace Task1.Models.Products
 
         public override string ToString()
         {
-            return $"Name: {Name}\tPrice: {Price}\tWeight: {Weight}\tCategory: {Category}\tType: {Type}";
+            return $"{base.ToString()}, Category: {Category}, Type: {Type}";
         }
 
         public override bool Equals(object? obj)

@@ -37,7 +37,7 @@ namespace Task1.Models.Products
 
         public override string ToString()
         {
-            return $"ExpirationDate: {ExpirationDate}";
+            return $"{base.ToString()}, ExpirationDate: {ExpirationDate}";
         }
 
         public override bool Equals(object? obj)

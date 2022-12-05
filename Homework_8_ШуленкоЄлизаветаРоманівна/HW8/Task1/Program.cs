@@ -16,7 +16,7 @@ class Program
             new Product("Tomato", new Price(){Currency = Currency.Dollar, RegularPrice = 5 }, Measure.Kilogram, 25),
             new Product("Potato", new Price(){Currency = Currency.Hryvnia, RegularPrice = 30 }, Measure.Kilogram, 65),
             new Product("Apple", new Price(){Currency = Currency.Hryvnia, RegularPrice = 45 }, Measure.Kilogram, 50),
-            new Product("", new Price(){Currency = Currency.Euro, RegularPrice = 150 }, Measure.Kilogram, 2),
+            new Product("Peach", new Price(){Currency = Currency.Euro, RegularPrice = 150 }, Measure.Kilogram, 2),
             new Meat(Category.Sort1, Type.Pork, "Meat", new Price(){Currency = Currency.Dollar, RegularPrice = 10 }, Measure.Kilogram, 10),
             new Meat(Category.Extra, Type.Pork, "Meat", new Price(){Currency = Currency.Dollar, RegularPrice = 10 }, Measure.Kilogram, 10),
             new Meat(Category.Extra, Type.Lamb, "Meat", new Price(){Currency = Currency.Hryvnia, RegularPrice = 300 }, Measure.Kilogram, 0.5),
@@ -31,7 +31,7 @@ class Program
 
         var orders = FileUtillity.GetOrdersFromFile();
 
-        storage.FailedOrderExecute += FileUtillity.FillReportFile;
+        storage.OrderNotifyFailed += FileUtillity.FillReportFile;
 
         storage.ExecuteOrders(orders, relatedGoods);
     }

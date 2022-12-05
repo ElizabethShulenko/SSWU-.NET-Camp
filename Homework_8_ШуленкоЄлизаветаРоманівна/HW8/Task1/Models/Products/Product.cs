@@ -38,7 +38,7 @@ namespace Task1.Models.Products
 
         public override string ToString()
         {
-            return $"Name: {Name}\tPrice: {Price?.RegularPrice}\tCurrency: {Price?.Currency}\tWeight: {Weight} {Measure}";
+            return $"Name: {Name}, Price: {Price?.RegularPrice}, Currency: {Price?.Currency}, Weight: {Weight} {Measure}";
         }
 
         public override bool Equals(object? obj)

@@ -1,0 +1,4 @@
+Unavailiable products: 
+Name: Apple1	Price: 	Currency: 	Weight: 30 Kilogram
+Name:  Apple2	Price: 	Currency: 	Weight: 30 Kilogram
+Name:  Apple3	Price: 	Currency: 	Weight: 30 Kilogram

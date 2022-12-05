@@ -1,0 +1,4 @@
+Unavailiable products: 
+System.Collections.Generic.List`1[Task1.Models.Product]
+System.Collections.Generic.List`1[Task1.Models.Product]
+System.Collections.Generic.List`1[Task1.Models.Product]

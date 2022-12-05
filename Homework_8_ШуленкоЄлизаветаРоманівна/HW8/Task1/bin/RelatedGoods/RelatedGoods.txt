@@ -1,0 +1,4 @@
+Apple Red|Apple Yellow|Apple Green
+Meat
+Milk 72%|Milk 80%|Milk 'Moo'
+Cheese Chedar|Mazarella|Bree

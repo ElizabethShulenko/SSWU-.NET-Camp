@@ -1,0 +1,5 @@
+Order info: 
+Company: Silpo
+Products in order:
+Name: Heavy cream 'MooCream', Weight: 5
+

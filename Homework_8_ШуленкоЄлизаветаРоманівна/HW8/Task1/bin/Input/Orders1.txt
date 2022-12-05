@@ -1,0 +1,6 @@
+Mall|Apple1|30
+Mall|Tomato|20
+SuperMarket|Meat|10
+ATB|Milk 'Victory'|10
+Silpo|Heavy cream 'MooCream'|5
+
